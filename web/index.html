@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/logo-montevive.png" />
+    <title>ALIA vs Llama 3 vs Mistral — comparador de tokenizadores · Montevive</title>
+    <meta
+      name="description"
+      content="Comparador en vivo de tokenizadores: ALIA (LLM del Gobierno de España), Llama 3 y Mistral. 100% en tu navegador, sin servidores. Demuestra la eficiencia de ALIA en castellano, catalán, euskera y gallego."
+    />
+    <meta name="theme-color" content="#0b0f16" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+
+    <script>
+      // Bootstrap theme + lang from localStorage before paint to avoid FOUC.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+          var lang = localStorage.getItem('lang');
+          if (lang === 'es' || lang === 'en') {
+            document.documentElement.setAttribute('lang', lang);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ALIA vs Llama 3 vs Mistral — comparador de tokenizadores" />
+    <meta
+      property="og:description"
+      content="Comprueba en vivo cuántos tokens cuesta tu texto en cada modelo. ALIA es ~1.7-2× más eficiente que los tokenizadores anglo-céntricos en lenguas ibéricas."
+    />
+    <meta property="og:image" content="img/logo-montevive.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ALIA vs Llama 3 vs Mistral — comparador de tokenizadores" />
+    <meta
+      name="twitter:description"
+      content="100% local en tu navegador. Compara cómo tokenizan ALIA, Llama 3 y Mistral exactamente las mismas palabras."
+    />
+    <meta name="twitter:image" content="img/logo-montevive.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
