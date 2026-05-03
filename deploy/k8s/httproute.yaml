@@ -1,0 +1,28 @@
+# HTTPRoute for /alia-tokenizer-comparison/* — must coexist with the existing
+# `labs` HTTPRoute that catches `/`. Envoy Gateway picks the most-specific path
+# match, so as long as both routes exist on the same Gateway listener, requests
+# to /alia-tokenizer-comparison/... will land here and everything else stays on
+# the privacy-filter container that also serves the landing page.
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: alia-tokenizer-comparison
+  namespace: labs
+  labels:
+    app.kubernetes.io/part-of: labs
+    app.kubernetes.io/name: alia-tokenizer-comparison
+spec:
+  hostnames:
+    - labs.montevive.ai
+  parentRefs:
+    - name: montevive
+      namespace: envoy-gateway-system
+      sectionName: https-labs
+  rules:
+    - backendRefs:
+        - name: alia-tokenizer-comparison
+          port: 80
+      matches:
+        - path:
+            type: PathPrefix
+            value: /alia-tokenizer-comparison/
